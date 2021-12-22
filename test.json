@@ -1,0 +1,20 @@
+{
+	"Computer":{
+		"id": "playerComp",
+		"display_name": "#PLAYERNAME#'s Computer",
+		"ip_address": "192.168.0.2",
+		"filesystem": {"home/":{}, "log/":{}, "bin/":{}, 
+			"sys/":{"xserver.sys":"#BASE_THEME#", "os-config.sys":"#BINARY#",
+			"bootcfg.dll":"#BINARY#", "netcfgx.dll":"#BINARY#"}},
+		"ports_available": [],
+		"ports_to_hack": 0,
+		"has_firewall": false,
+		"firewall_step_length": 1,
+		"firewall_solution": "",
+		"has_proxy": false,
+		"proxy_length": 1,
+		"node_difficulty": -1,
+		"node_position": [20,20],
+		"trace_time": -1,
+	}
+}

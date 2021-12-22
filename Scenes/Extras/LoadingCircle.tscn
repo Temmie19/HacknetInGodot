@@ -1,0 +1,260 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Scenes/Extras/LoadingDot.tscn" type="PackedScene" id=2]
+
+[sub_resource type="Animation" id=1]
+resource_name = "Rotate"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("pivot_1:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 70.0, 290.0, 360.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("pivot_2:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2, 1.2, 2.2, 3, 3.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0, 70.0, 290.0, 346.0, 360.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("pivot_3:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.4, 1.4, 2.4, 3, 3.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0, 70.0, 290.0, 332.0, 360.0 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("pivot_4:rotation_degrees")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.001, 0.6, 1.6, 2.6, 3, 3.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0, 0.0, 70.0, 290.0, 318.0, 360.0 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("pivot_5:rotation_degrees")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.8, 1.8, 2.8, 3, 3.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0, 70.0, 290.0, 304.0, 360.0 ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("pivot_6:rotation_degrees")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 1, 2, 3, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0, 70.0, 290.0, 360.0 ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("pivot_7:rotation_degrees")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 1.2, 2.2, 3, 3.2, 4.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0, 70.0, 246.0, 290.0, 360.0 ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("pivot_8:rotation_degrees")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0, 1.4, 2.4, 3, 3.4, 4.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0, 70.0, 202.0, 290.0, 360.0 ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "Rotate (copy)"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("pivot_1:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 70.0, 290.0, 360.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("pivot_2:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.19, 0.2, 1.2, 2.2, 3, 3.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 346.0, 360.0, 0.0, 70.0, 290.0, 346.0, 360.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("pivot_3:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.39, 0.4, 1.4, 2.4, 3, 3.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 332.0, 360.0, 0.0, 70.0, 290.0, 332.0, 360.0 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("pivot_4:rotation_degrees")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.001, 0.59, 0.6, 1.6, 2.6, 3, 3.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 318.0, 360.0, 0.0, 70.0, 290.0, 318.0, 360.0 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("pivot_5:rotation_degrees")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.79, 0.8, 1.8, 2.8, 3, 3.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 304.0, 360.0, 0.0, 70.0, 290.0, 304.0, 360.0 ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("pivot_6:rotation_degrees")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.99, 1, 2, 3, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 290.0, 360.0, 0.0, 70.0, 290.0, 360.0 ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("pivot_7:rotation_degrees")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 0.2, 1.19, 1.2, 2.2, 3, 3.2, 4.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 246.0, 290.0, 360.0, 0.0, 70.0, 246.0, 290.0, 360.0 ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("pivot_8:rotation_degrees")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0, 0.4, 1.39, 1.4, 2.4, 3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 202.0, 290.0, 360.0, 0.0, 70.0, 202.0 ]
+}
+
+[node name="LoadingCircle" type="Node2D"]
+
+[node name="pivot_1" type="Node2D" parent="."]
+rotation = 6.28319
+
+[node name="dot_1" parent="pivot_1" instance=ExtResource( 2 )]
+position = Vector2( 0, -50 )
+
+[node name="pivot_2" type="Node2D" parent="."]
+rotation = 6.03884
+
+[node name="dot_2" parent="pivot_2" instance=ExtResource( 2 )]
+position = Vector2( 0, -50 )
+
+[node name="pivot_3" type="Node2D" parent="."]
+rotation = 5.79449
+
+[node name="dot_3" parent="pivot_3" instance=ExtResource( 2 )]
+position = Vector2( 0, -50 )
+
+[node name="pivot_4" type="Node2D" parent="."]
+rotation = 5.55015
+
+[node name="dot_4" parent="pivot_4" instance=ExtResource( 2 )]
+position = Vector2( 0, -50 )
+
+[node name="pivot_5" type="Node2D" parent="."]
+rotation = 5.3058
+
+[node name="dot_5" parent="pivot_5" instance=ExtResource( 2 )]
+position = Vector2( 0, -50 )
+
+[node name="pivot_6" type="Node2D" parent="."]
+rotation = 5.06145
+
+[node name="dot_6" parent="pivot_6" instance=ExtResource( 2 )]
+position = Vector2( 0, -50 )
+
+[node name="pivot_7" type="Node2D" parent="."]
+rotation = 4.29351
+
+[node name="dot_7" parent="pivot_7" instance=ExtResource( 2 )]
+position = Vector2( 0, -50 )
+
+[node name="pivot_8" type="Node2D" parent="."]
+rotation = 3.52557
+
+[node name="dot_8" parent="pivot_8" instance=ExtResource( 2 )]
+position = Vector2( 0, -50 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "Rotate"
+anims/Rotate = SubResource( 1 )
+"anims/Rotate (copy)" = SubResource( 2 )
+next/Rotate = "Rotate (copy)"
+"next/Rotate (copy)" = "Rotate (copy)"

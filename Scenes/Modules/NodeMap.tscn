@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scripts/Modules/NodeMap.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/Extras/ComputerNode.tscn" type="PackedScene" id=2]
+
+[node name="NodeMap" type="ColorRect"]
+anchor_top = 0.740741
+anchor_right = 0.371875
+anchor_bottom = 0.961111
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color( 0.235294, 0.172549, 0.388235, 0.52549 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Container" type="ColorRect" parent="."]
+anchor_left = 0.0154062
+anchor_top = 0.0420168
+anchor_right = 0.985994
+anchor_bottom = 0.97479
+color = Color( 0.188235, 0.180392, 0.305882, 0.92549 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="ComputerNode" parent="Container" instance=ExtResource( 2 )]
+position = Vector2( 95.2441, 69.8456 )

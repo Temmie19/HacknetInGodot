@@ -1,0 +1,165 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://MainScreen.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/Modules/Viewport.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Assets/Fonts/NotoSans/NotoSans-Regular.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://Scenes/Modules/Terminal.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Modules/NodeMap.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Assets/Images/minimal-city-wallpaper-1920x1080-by-romain-trystam.jpeg" type="Texture" id=6]
+[ext_resource path="res://Scenes/Modules/RAM.tscn" type="PackedScene" id=7]
+
+[sub_resource type="DynamicFont" id=1]
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=2]
+font_data = ExtResource( 3 )
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="Background" type="TextureRect" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+texture = ExtResource( 6 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="VSplitContainer" type="VSplitContainer" parent="."]
+margin_right = 1920.0
+margin_bottom = 1080.0
+split_offset = 37
+dragger_visibility = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MenuBar" type="ColorRect" parent="VSplitContainer"]
+margin_right = 1920.0
+margin_bottom = 37.0
+color = Color( 0.168627, 0.156863, 0.235294, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Exit" type="Button" parent="VSplitContainer/MenuBar"]
+margin_right = 39.0
+margin_bottom = 34.0
+custom_fonts/font = SubResource( 1 )
+text = "X"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FPS" type="Label" parent="VSplitContainer/MenuBar"]
+margin_left = 288.0
+margin_top = -1.0
+margin_right = 357.0
+margin_bottom = 33.0
+custom_fonts/font = SubResource( 2 )
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Interfaces" type="Control" parent="VSplitContainer"]
+margin_top = 49.0
+margin_right = 1920.0
+margin_bottom = 1080.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Deprecated" type="HBoxContainer" parent="VSplitContainer/Interfaces"]
+visible = false
+margin_left = 8.0
+margin_top = -9.0
+margin_right = 1912.0
+margin_bottom = 1029.0
+custom_constants/separation = 34
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RAM" parent="VSplitContainer/Interfaces/Deprecated" instance=ExtResource( 7 )]
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VSplitContainer/Interfaces/Deprecated"]
+margin_left = 442.0
+margin_right = 1156.0
+margin_bottom = 1038.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 3.5
+custom_constants/separation = 10
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Viewport" parent="VSplitContainer/Interfaces/Deprecated/VBoxContainer2" instance=ExtResource( 2 )]
+
+[node name="NodeMap" parent="VSplitContainer/Interfaces/Deprecated/VBoxContainer2" instance=ExtResource( 5 )]
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 800.0
+margin_right = 714.0
+margin_bottom = 1038.0
+
+[node name="Terminal" parent="VSplitContainer/Interfaces/Deprecated" instance=ExtResource( 4 )]
+
+[node name="MainSplitter" type="HSplitContainer" parent="VSplitContainer/Interfaces"]
+margin_right = 1904.0
+margin_bottom = 1027.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SecondarySplitter" type="HSplitContainer" parent="VSplitContainer/Interfaces/MainSplitter"]
+margin_right = 1231.0
+margin_bottom = 1027.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 6.5
+
+[node name="RAM" parent="VSplitContainer/Interfaces/MainSplitter/SecondarySplitter" instance=ExtResource( 7 )]
+modulate = Color( 1, 1, 1, 0 )
+margin_right = 441.0
+margin_bottom = 1027.0
+
+[node name="HorzContainer" type="VSplitContainer" parent="VSplitContainer/Interfaces/MainSplitter/SecondarySplitter"]
+margin_left = 453.0
+margin_right = 1231.0
+margin_bottom = 1027.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 3.5
+
+[node name="Viewport" parent="VSplitContainer/Interfaces/MainSplitter/SecondarySplitter/HorzContainer" instance=ExtResource( 2 )]
+modulate = Color( 1, 1, 1, 0 )
+margin_right = 778.0
+margin_bottom = 783.0
+
+[node name="NodeMap" parent="VSplitContainer/Interfaces/MainSplitter/SecondarySplitter/HorzContainer" instance=ExtResource( 5 )]
+modulate = Color( 1, 1, 1, 0 )
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 795.0
+margin_right = 778.0
+margin_bottom = 1027.0
+
+[node name="Terminal" parent="VSplitContainer/Interfaces/MainSplitter" instance=ExtResource( 4 )]
+modulate = Color( 1, 1, 1, 0 )
+margin_left = 1243.0
+margin_bottom = 1027.0
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+
+[node name="SoundEffects1" type="AudioStreamPlayer" parent="."]
+
+[node name="SoundEffects2" type="AudioStreamPlayer" parent="."]
+
+[connection signal="draw" from="." to="." method="_on_Node2D_draw"]
+[connection signal="resized" from="Background" to="." method="_on_Background_resized"]

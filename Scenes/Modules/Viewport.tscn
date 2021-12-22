@@ -1,0 +1,22 @@
+[gd_scene format=2]
+
+[node name="Viewport" type="ColorRect"]
+margin_right = 714.0
+margin_bottom = 790.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 3.32
+color = Color( 0.235294, 0.172549, 0.388235, 0.721569 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_left = 0.0154062
+anchor_top = 0.0151899
+anchor_right = 0.981793
+anchor_bottom = 0.988608
+color = Color( 0.188235, 0.180392, 0.305882, 0.92549 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
