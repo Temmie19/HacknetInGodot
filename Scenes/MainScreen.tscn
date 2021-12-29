@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=2]
 
-[ext_resource path="res://MainScreen.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/MainScreen.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Modules/Viewport.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Assets/Fonts/NotoSans/NotoSans-Regular.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://Scenes/Modules/Terminal.tscn" type="PackedScene" id=4]

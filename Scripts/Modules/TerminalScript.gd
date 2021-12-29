@@ -9,13 +9,13 @@ var total_lines = 0
 
 var all_programs = {"SSHCrack.exe" : ["portcrusher", 
 ["SecureShellCrack", "SSH", 8]], "SQL_MemCorrupt.exe" : ["portcrusher", 
-["SQLMemoryCorrupt", "SQL", 12.2]], "clear" : ["utility", "_clear_history"], 
-"lines": ["utility", "_print_lines"]}
+["SQLMemoryCorrupt", "SQL", 12.2]], "clear" : ["terminal_program", "_clear_history"], 
+"lines": ["terminal_program", "_print_lines"]}
 
 var available_programs = {"SSHCrack.exe" : ["portcrusher", 
 ["SecureShellCrack", "SSH", 8]], "SQL_MemCorrupt.exe" : ["portcrusher", 
-["SQLMemoryCorrupt", "SQL", 12.2]], "clear" : ["utility", "_clear_history"], 
-"lines": ["utility", "_print_lines"]}
+["SQLMemoryCorrupt", "SQL", 12.2]], "clear" : ["terminal_program", "_clear_history"], 
+"lines": ["terminal_program", "_print_lines"]}
 
 func _ready():
 	_calculate_terminal_size()
@@ -49,7 +49,7 @@ func _on_CommandEntry_text_entered(new_text):
 			var program = available_programs[text[0]]
 			if program[0] == "portcrusher":
 				_run_portcrusher(program[1])
-			elif program[0] == "utility":
+			elif program[0] == "terminal_program":
 				call(program[1])
 		else:
 			_invalid_command(text[0])

@@ -1,4 +1,4 @@
-{
+[{
 	"Computer":{
 		"id": "playerComp",
 		"display_name": "#PLAYERNAME#'s Computer",
@@ -12,10 +12,10 @@
 		"firewall_step_length": 1,
 		"firewall_solution": "",
 		"has_proxy": false,
-		"proxy_length": 1,
+		"proxy_length": 0,
 		"node_difficulty": -1,
 		"node_position": [20,20],
 		"trace_time": -1,
-		"connected_nodes": [],xzax
+		"connected_nodes": [],
 	}
-}
+}]

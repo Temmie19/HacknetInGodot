@@ -15,6 +15,9 @@ onready var sfx2 = get_node("SoundEffects2")
 
 func _ready():
 	_startup_sequence()
+	var rng = RandomNumberGenerator.new()
+	rng.randomize()
+	print(rng.randi(), " ", rng.randi(), " ", rng.randi(), " ", rng.randi())
 
 func _process(delta):
 	Frames.set_text(str(Engine.get_frames_per_second()))

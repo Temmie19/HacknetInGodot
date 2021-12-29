@@ -46,7 +46,6 @@ func _check_visibility():
 	else:
 		node.visible = false
 
-
 func _on_mouse_entered():
 	display.visible = true
 
