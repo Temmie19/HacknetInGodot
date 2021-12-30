@@ -69,6 +69,7 @@ next/RotateOld = "Rotate"
 
 [node name="Display" type="Label" parent="."]
 visible = false
+light_mask = 2
 material = SubResource( 3 )
 margin_left = 17.0
 margin_top = -15.0

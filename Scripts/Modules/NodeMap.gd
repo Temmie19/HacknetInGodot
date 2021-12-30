@@ -3,6 +3,8 @@ extends ColorRect
 var computer_node = preload("res://Scenes/Extras/ComputerNode.tscn")
 var generate = preload("res://Scripts/Modules/ComputerGeneration.gd").new()
 
+var rng = RandomNumberGenerator.new()
+
 onready var container = get_node("Container")
 
 func _ready():
@@ -13,6 +15,8 @@ func _ready():
 #	pass
 
 func _add_node(computers:Array):
+	#Read the initial array with all the computers inside of it, then setup up
+	#each computer for generation
 	for i in computers:
 		var node_info = computers[i]["Computer"]
 		computer_node.instance()
@@ -20,8 +24,18 @@ func _add_node(computers:Array):
 		container.add_child(computer_node)
 		var computer = get_node(str("Container/", node_info["name"]))
 		node_info = _run_node_checks(node_info)
-		var x = node_info["x"] / container.get_size().x
-		var y = node_info["y"] / container.get_size().y
+		#Set variable for positional coordinates
+		var x = 0
+		var y = 0
+		#If it has a position already in the file, use that, otherwise pick
+		#something random instead
+		if "node_position" in node_info and node_info["node_position"].size() == 2:
+			x = container.get_size().x / (node_info["node_position"][0] / 100)
+			y = container.get_size().y / (node_info["node_position"][1] / 100)
+		else:
+			x = rng.randi(0, container.get_size().x)
+			y = rng.randi(0, container.get_size().y)
+		#Set the node position
 		computer.set_position(Vector2(x, y))
 		var node_keys = node_info.keys()
 		for j in range(node_keys.size()):
@@ -56,7 +70,6 @@ func _add_missing_data(node_info:Dictionary):
 			node_info[current_key] = default_comp[current_key]
 	#After that's done, check if the IP address is empty
 	if node_info["ip_address"] == "":
-		var rng = RandomNumberGenerator.new()
 		rng.randomize()
 		#If it's empty, randomly assign it a set of 4 numbers between 0 and 255
 		#seperated each by periods, just like an actual IP address
@@ -66,6 +79,7 @@ func _add_missing_data(node_info:Dictionary):
 	return node_info
 
 func _read_file(path:String):
+	#Reads a file at the given path and returns the content. Pretty intense stuff
 	var file = File.new()
 	file.open(path, File.READ)
 	var content = file.get_as_text()
