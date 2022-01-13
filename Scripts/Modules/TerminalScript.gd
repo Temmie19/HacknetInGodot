@@ -4,13 +4,12 @@ onready var history = get_node("Splitter/History")
 onready var location = get_node("Splitter/CommandBar/Location")
 onready var entry = get_node("Splitter/CommandBar/CommandEntry")
 
+var config = ConfigFile.new()
+
 var line_count = 0
 var total_lines = 0
 
-var all_programs = {"SSHCrack.exe" : ["portcrusher", 
-["SecureShellCrack", "SSH", 8]], "SQL_MemCorrupt.exe" : ["portcrusher", 
-["SQLMemoryCorrupt", "SQL", 12.2]], "clear" : ["terminal_program", "_clear_history"], 
-"lines": ["terminal_program", "_print_lines"]}
+var all_programs = {}
 
 var available_programs = {"SSHCrack.exe" : ["portcrusher", 
 ["SecureShellCrack", "SSH", 8]], "SQL_MemCorrupt.exe" : ["portcrusher", 
@@ -33,14 +32,14 @@ func _calculate_terminal_size():
 	#all the terminal history, then divide that height by the amount of lines of
 	#text, so that I could finally achieve the goal of having text that started
 	#at the bottom, like a real command line
-	for i in range(container_height):
+	for _i in range(container_height):
 		if(height * lines <= history.get_size().y):
 			lines += 1
 		else:
 			break
 	#print("Font height: ", height, " Lines is: ", lines)
 	total_lines = lines - 2
-	for i in range(total_lines):
+	for _i in range(total_lines):
 		history.newline()
 	#print(history.get_visible_line_count())
 
@@ -77,7 +76,7 @@ func _clear_history():
 	history.set_text("")
 	entry.set_text("")
 	line_count = 0
-	for i in range(total_lines):
+	for _i in range(total_lines):
 		history.newline()
 
 func _print_lines():
@@ -148,3 +147,6 @@ func _display_previous_command():
 func _erase():
 	#Erases
 	entry.set_text("")
+
+func _read_main_programs():
+	var default_programs = config.load("res://Scripts/Configs/default_programs.ini")

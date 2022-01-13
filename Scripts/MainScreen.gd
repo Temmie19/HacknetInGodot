@@ -25,7 +25,7 @@ func _process(delta):
 func _startup_sequence():
 	music.stream = load("res://Assets/Sounds/Startup.ogg")
 	music.play(0)
-	for i in range(4):
+	for _i in range(4):
 		interfaces.visible = true
 		yield(get_tree().create_timer(0.05), "timeout")
 		interfaces.visible = false
@@ -42,7 +42,7 @@ func _startup_sequence():
 	yield(get_tree().create_timer(0.8), "timeout")
 
 func _boot_flash(node):
-	for i in range(4):
+	for _i in range(4):
 		node.set_modulate(Color(1,1,1,1))
 		#node.visible = true
 		yield(get_tree().create_timer(0.05), "timeout")

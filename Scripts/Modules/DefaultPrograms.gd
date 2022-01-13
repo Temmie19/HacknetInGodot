@@ -1,13 +1,11 @@
 extends Node
 
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
+var config = ConfigFile.new()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	#config.set_value("SSHCRACK", "program_type", "portcrusher")
+	#config.save("res://Scripts/Configs/default_programs.ini")
 	pass # Replace with function body.
 
 

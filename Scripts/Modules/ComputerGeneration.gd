@@ -12,8 +12,7 @@ func _add_generated_difficulty(port_count, minimum_ports_required, proxy_firewal
 	node_info = _add_ports(port_count, node_info)
 	#Next, add the port amount required to sucessfully hack the computer
 	node_info["ports_to_hack"] = rng.randi_range(minimum_ports_required, 
-		node_info["ports_to_hack"].size())
-	
+		port_count)
 	return node_info
 
 func _add_ports(port_count, node_info):
@@ -29,7 +28,7 @@ func _add_ports(port_count, node_info):
 			blacklisted_ports = node_info["blacklisted_ports"]
 	#Make sure that the whitelist isn't empty. Because that would be bad
 	if whitelisted_ports.size() > 0:
-		for i in range(port_count):
+		for _i in range(port_count):
 			var current_port = whitelisted_ports[rng.randi_range(0,all_ports.size()-1)]
 			node_info = _port_addition_check(current_port, node_info)
 	#If the whitelist is empty, check to see if the blacklist isn't
@@ -39,7 +38,7 @@ func _add_ports(port_count, node_info):
 		for i in range(all_ports):
 			if not all_ports[i] in blacklisted_ports:
 				new_port_set.append(all_ports[i])
-		for i in range(port_count):
+		for _i in range(port_count):
 			var current_port = new_port_set[rng.randi_range(0,all_ports.size()-1)]
 			node_info = _port_addition_check(current_port, node_info)
 	#If you're blacklisting all ports or whitelisting none, just, do nothing I guess
@@ -47,7 +46,7 @@ func _add_ports(port_count, node_info):
 		pass
 	#And if all else fails, just add in any random port
 	else:
-		for i in range(port_count):
+		for _i in range(port_count):
 			var current_port = all_ports[rng.randi_range(0,all_ports.size()-1)]
 			node_info = _port_addition_check(current_port, node_info)
 	return node_info
@@ -100,7 +99,7 @@ func _add_firewall(length, node_info):
 	#how long it'll take to reveal each line in the firewall only if they are
 	#not already defined.
 	if not "firewall_solution" in node_info or node_info["firewall_solution"] == "":
-		for i in range(6 + length):
+		for _i in range(6 + length):
 			password += alpha_numeric[rng.randi_range(0,len(alpha_numeric)-1)]
 		node_info["firewall_solution"] = password
 	return node_info

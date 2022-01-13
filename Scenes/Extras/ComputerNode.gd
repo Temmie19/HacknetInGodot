@@ -28,6 +28,8 @@ var display_name : String = "Player's Computer"
 
 var node_position : Array = [0, 0]
 
+signal hover(comp_name, mode)
+
 onready var node = get_node(".")
 onready var anim = get_node("AnimationPlayer")
 onready var display = get_node("Display")
@@ -47,8 +49,10 @@ func _check_visibility():
 		node.visible = false
 
 func _on_mouse_entered():
+	emit_signal("hover", self.name, "entered")
 	display.visible = true
 
 
 func _on_mouse_exited():
+	emit_signal("hover", self.name, "exited")
 	display.visible = false
