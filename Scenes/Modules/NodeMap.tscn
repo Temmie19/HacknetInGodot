@@ -31,7 +31,7 @@ anchor_left = 0.0154062
 anchor_top = 0.0420168
 anchor_right = 0.985994
 anchor_bottom = 0.97479
-color = Color( 0.188235, 0.180392, 0.305882, 0.92549 )
+color = Color( 0.188235, 0.180392, 0.305882, 1 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
@@ -48,4 +48,7 @@ scale = Vector2( 2.77606, 1.58151 )
 texture = ExtResource( 3 )
 texture_scale = 0.13
 energy = 0.9
+mode = 2
 range_item_cull_mask = 4
+shadow_enabled = true
+shadow_item_cull_mask = 4

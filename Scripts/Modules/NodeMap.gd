@@ -19,7 +19,7 @@ func _ready():
 #	pass
 
 func _add_node(computers:Array):
-	var container_size = container.get_size()
+	var csize = container.get_size()
 	#Read the initial array with all the computers inside of it, then setup up
 	#each computer for generation
 	for i in computers:
@@ -40,11 +40,11 @@ func _add_node(computers:Array):
 		#If it has a position already in the file, use that, otherwise pick
 		#something random instead
 		if "node_position" in node_info and node_info["node_position"].size() == 2:
-			x = round(node_info["node_position"][0] / 100 * container_size.x)
-			y = round(node_info["node_position"][1] / 100 * container_size.y)
+			x = int(round(node_info["node_position"][0] / 100 * csize.x)) % int(csize.x)
+			y = int(round(node_info["node_position"][1] / 100 * csize.y)) % int(csize.y)
 		else:
-			x = rng.randi_range(0, container_size.x)
-			y = rng.randi_range(0, container_size.y)
+			x = rng.randi_range(0, csize.x)
+			y = rng.randi_range(0, csize.y)
 		#Set the node position
 		computer.set_position(Vector2(x, y))
 		#ip_label.set_position(Vector2(x, y))

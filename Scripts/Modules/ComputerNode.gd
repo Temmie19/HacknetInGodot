@@ -24,6 +24,7 @@ var trace_time : int = -1
 var node_difficulty : int = -1
 
 var ip_address : String = "192.168.0.2"
+var domain_name : String = ""
 var display_name : String = "Player's Computer"
 
 var node_position : Array = [0, 0]
@@ -35,11 +36,17 @@ onready var anim = get_node("AnimationPlayer")
 onready var display = get_node("Display")
 onready var background = get_node("Display/Background")
 
+onready var display_loc = display.get_canvas_item()
+
 func _ready():
 	anim.play("Rotate")
+	VisualServer.canvas_item_set_z_index(display_loc, 100)
 
 func _set_display_info():
-	display.set_text(str(" ", display_name, " \n ", ip_address, " "))
+	if domain_name == "":
+		display.set_text(str(" ", display_name, " \n ", ip_address, " "))
+	else:
+		display.set_text(str(" ", display_name, " \n ", domain_name, " "))
 
 func _process(delta):
 	_check_visibility()

@@ -1,11 +1,7 @@
-[gd_scene load_steps=2 format=2]
-
-[sub_resource type="ShaderMaterial" id=3]
+[gd_scene format=2]
 
 [node name="Display" type="Label"]
 visible = false
-light_mask = 2
-material = SubResource( 3 )
 margin_left = 17.0
 margin_top = -15.0
 margin_right = 70.0
@@ -16,9 +12,10 @@ __meta__ = {
 }
 
 [node name="Background" type="ColorRect" parent="."]
+show_behind_parent = true
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0.647059, 0.647059, 0.647059, 0.160784 )
+color = Color( 0.290196, 0.247059, 0.478431, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }

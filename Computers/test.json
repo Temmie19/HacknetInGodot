@@ -24,6 +24,7 @@
 		"id": "testComp",
 		"display_name": "Test Computer",
 		"ip_address": "192.168.0.3",
+		"domain_name": "testcomp.com",
 		"filesystem": {"home/":{}, "log/":{}, "bin/":{}, 
 			"sys/":{"xserver.sys":"#BASE_THEME#", "os-config.sys":"#BINARY#",
 			"bootcfg.dll":"#BINARY#", "netcfgx.dll":"#BINARY#"}},
@@ -35,7 +36,7 @@
 		"has_proxy": false,
 		"proxy_length": 0,
 		"node_difficulty": -1,
-		"node_position": [],
+		"node_position": [30, 20],
 		"trace_time": -1,
 		"connected_nodes": [],
 	}

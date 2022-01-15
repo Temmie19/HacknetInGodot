@@ -3,7 +3,7 @@
 		"id": "",
 		"display_name": "",
 		"ip_address": "",
-		"dns": "",
+		"domain_name": "",
 		"filesystem": {"home/":{}, "log/":{}, "bin/":{}, 
 			"sys/":{"xserver.sys":"#BINARY#", "os-config.sys":"#BINARY#",
 			"bootcfg.dll":"#BINARY#", "netcfgx.dll":"#BINARY#"}},

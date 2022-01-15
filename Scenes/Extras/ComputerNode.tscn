@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://Scenes/Extras/ComputerNode.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/Modules/ComputerNode.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Images/default_node.png" type="Texture" id=2]
 [ext_resource path="res://Scenes/Extras/IPDisplay.tscn" type="PackedScene" id=3]
 
@@ -43,6 +43,8 @@ tracks/0/keys = {
 [node name="ComputerNode" type="Node2D"]
 script = ExtResource( 1 )
 
+[node name="Display" parent="." instance=ExtResource( 3 )]
+
 [node name="Point" type="Node2D" parent="."]
 rotation = 3.14159
 
@@ -70,8 +72,6 @@ method_call_mode = 1
 anims/Rotate = SubResource( 2 )
 anims/RotateOld = SubResource( 1 )
 next/RotateOld = "Rotate"
-
-[node name="Display" parent="." instance=ExtResource( 3 )]
 
 [connection signal="mouse_entered" from="Point/TextureRect" to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="Point/TextureRect" to="." method="_on_mouse_exited"]
