@@ -48,7 +48,6 @@ scale = Vector2( 2.77606, 1.58151 )
 texture = ExtResource( 3 )
 texture_scale = 0.13
 energy = 0.9
-mode = 2
 range_item_cull_mask = 4
 shadow_enabled = true
 shadow_item_cull_mask = 4
