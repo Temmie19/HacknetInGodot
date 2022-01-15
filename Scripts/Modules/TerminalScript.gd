@@ -10,14 +10,17 @@ var line_count = 0
 var total_lines = 0
 
 var all_programs = {}
+var program_binary = {}
 
 var available_programs = {"SSHCrack.exe" : ["portcrusher", 
 ["SecureShellCrack", "SSH", 8]], "SQL_MemCorrupt.exe" : ["portcrusher", 
 ["SQLMemoryCorrupt", "SQL", 12.2]], "clear" : ["terminal_program", "_clear_history"], 
 "lines": ["terminal_program", "_print_lines"]}
+#"SSHCrack.exe" : ["program", "SSH_CRACK", program_binary["SSH_CRACK"]]
 
 func _ready():
 	_calculate_terminal_size()
+	_read_main_programs()
 	#print(history.get_line_count())
 	#print(history.get_visible_line_count())
 
@@ -149,4 +152,24 @@ func _erase():
 	entry.set_text("")
 
 func _read_main_programs():
-	var default_programs = config.load("res://Scripts/Configs/default_programs.ini")
+	#This loads all the base programs provided by the game, starting with the
+	#port crushers first
+	var default_programs = config.load("res://Scripts/Configs/default_portcrushers.ini")
+	for program in config.get_sections():
+		all_programs[program] = {}
+		program_binary[program] = _generate_binary(program)
+		for attribute in config.get_section_keys(program):
+			all_programs[program][attribute] = config.get_value(program, attribute)
+		all_programs[program]["portcrusher"] = true
+	#print(program_binary)
+
+func _generate_binary(program_name):
+	var rng = RandomNumberGenerator.new()
+	var new_seed = 0
+	for i in range(len(program_name)):
+		new_seed += ord(program_name[i])
+	rng.seed = new_seed
+	var binary = ""
+	for i in range(150):
+		binary += str(rng.randi_range(0,1))
+	return binary

@@ -10,9 +10,13 @@ func _ready():
 func _add_generated_difficulty(port_count, minimum_ports_required, proxy_firewall, length, trace_time, node_info):
 	#First populate the computer with the amount of ports wanted 
 	node_info = _add_ports(port_count, node_info)
-	#Next, add the port amount required to sucessfully hack the computer
-	node_info["ports_to_hack"] = rng.randi_range(minimum_ports_required, 
-		port_count)
+	#Next, add the port amount required to sucessfully hack the computer if
+	#it doesn't already exist
+	if not "ports_to_hack" in node_info:
+		node_info["ports_to_hack"] = rng.randi_range(minimum_ports_required, 
+			port_count)
+	#Third, we add the proxy and or firewall if they don't already exist
+	node_info = _proxy_firewall_calculation(proxy_firewall, length, node_info)
 	return node_info
 
 func _add_ports(port_count, node_info):

@@ -37,6 +37,8 @@ onready var background = get_node("Display/Background")
 
 func _ready():
 	anim.play("Rotate")
+
+func _set_display_info():
 	display.set_text(str(" ", display_name, " \n ", ip_address, " "))
 
 func _process(delta):

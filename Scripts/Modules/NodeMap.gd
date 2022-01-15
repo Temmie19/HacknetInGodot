@@ -11,25 +11,27 @@ onready var container = get_node("Container")
 
 func _ready():
 	_run_node_checks({})
+	#print(JSON.parse(_read_file("res://Computers/test.json")).result)
+	_add_node(JSON.parse(_read_file("res://Computers/test.json")).result)
 	pass # Replace with function body.
 
 #func _process(delta):
 #	pass
 
 func _add_node(computers:Array):
+	var container_size = container.get_size()
 	#Read the initial array with all the computers inside of it, then setup up
 	#each computer for generation
 	for i in computers:
-		var node_info = computers[i]["Computer"]
-		computer_node.instance()
-		ip_display.instance()
+		var node_info = i["Computer"]
+		var new_computer = computer_node.instance()
+		#ip_display.instance()
 		var id = node_info["id"]
-		var cname = node_info["name"]
-		computer_node.name = id
-		ip_display.name = id
-		container.add_child(computer_node)
-		#label_container.add_child(ip_display)
-		var computer = get_node(str("Container/", cname))
+		var cname = node_info["display_name"]
+		new_computer.set_name(id)
+		#ip_display.name = id
+		container.add_child(new_computer)
+		var computer = get_node(str("Container/", id))
 		#var ip_label = get_node(str("LabelContainer/", cname))
 		node_info = _run_node_checks(node_info)
 		#Set variable for positional coordinates
@@ -38,18 +40,18 @@ func _add_node(computers:Array):
 		#If it has a position already in the file, use that, otherwise pick
 		#something random instead
 		if "node_position" in node_info and node_info["node_position"].size() == 2:
-			x = container.get_size().x / (node_info["node_position"][0] / 100)
-			y = container.get_size().y / (node_info["node_position"][1] / 100)
+			x = round(node_info["node_position"][0] / 100 * container_size.x)
+			y = round(node_info["node_position"][1] / 100 * container_size.y)
 		else:
-			x = rng.randi(0, container.get_size().x)
-			y = rng.randi(0, container.get_size().y)
+			x = rng.randi_range(0, container_size.x)
+			y = rng.randi_range(0, container_size.y)
 		#Set the node position
 		computer.set_position(Vector2(x, y))
 		#ip_label.set_position(Vector2(x, y))
-		
 		var node_keys = node_info.keys()
 		for j in range(node_keys.size()):
 			computer.set(node_keys[j], node_info[node_keys[j]])
+		computer._set_display_info()
 
 func _run_node_checks(node_info:Dictionary):
 	var port_count = 0
