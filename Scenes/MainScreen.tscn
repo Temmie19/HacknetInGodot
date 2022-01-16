@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Scripts/MainScreen.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Modules/Viewport.tscn" type="PackedScene" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Scenes/Modules/NodeMap.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Assets/Images/minimal-city-wallpaper-1920x1080-by-romain-trystam.jpeg" type="Texture" id=6]
 [ext_resource path="res://Scenes/Modules/RAM.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/Extras/SpotLight.tscn" type="PackedScene" id=8]
 
 [sub_resource type="DynamicFont" id=1]
 font_data = ExtResource( 3 )
@@ -154,6 +155,10 @@ margin_bottom = 1027.0
 modulate = Color( 1, 1, 1, 0 )
 margin_left = 1243.0
 margin_bottom = 1027.0
+
+[node name="SpotLight" parent="." instance=ExtResource( 8 )]
+visible = false
+position = Vector2( 961.985, 0 )
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
 

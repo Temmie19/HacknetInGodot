@@ -1,6 +1,14 @@
-[gd_scene format=2]
+[gd_scene load_steps=3 format=2]
+
+[sub_resource type="CanvasItemMaterial" id=1]
+light_mode = 2
+
+[sub_resource type="CanvasItemMaterial" id=2]
+light_mode = 2
 
 [node name="Display" type="Label"]
+light_mask = 8
+material = SubResource( 1 )
 margin_left = 17.0
 margin_top = -15.0
 margin_right = 70.0
@@ -12,6 +20,8 @@ __meta__ = {
 
 [node name="Background" type="ColorRect" parent="."]
 show_behind_parent = true
+light_mask = 8
+material = SubResource( 2 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0.286275, 0.25098, 0.435294, 0.666667 )

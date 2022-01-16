@@ -1,7 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Assets/Fonts/NotoSans/NotoSans-Regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Scripts/Modules/TerminalScript.gd" type="Script" id=2]
+[ext_resource path="res://Assets/Images/Beam2.png" type="Texture" id=3]
+
+[sub_resource type="CanvasItemMaterial" id=4]
+light_mode = 2
 
 [sub_resource type="DynamicFont" id=1]
 font_data = ExtResource( 1 )
@@ -23,6 +27,7 @@ size_flags_stretch_ratio = 3.5
 color = Color( 0.235294, 0.172549, 0.388235, 0.52549 )
 script = ExtResource( 2 )
 __meta__ = {
+"_edit_horizontal_guides_": [ -117.659 ],
 "_edit_use_anchors_": false
 }
 
@@ -49,6 +54,8 @@ __meta__ = {
 }
 
 [node name="History" type="RichTextLabel" parent="Splitter"]
+light_mask = 4
+material = SubResource( 4 )
 margin_right = 694.0
 margin_bottom = 976.0
 size_flags_horizontal = 3
@@ -93,6 +100,14 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = SubResource( 3 )
 caret_blink = true
+
+[node name="Light2D" type="Light2D" parent="."]
+position = Vector2( 78.6931, 500.713 )
+scale = Vector2( 0.873877, 0.903995 )
+texture = ExtResource( 3 )
+offset = Vector2( 320, 0 )
+mode = 3
+range_item_cull_mask = 4
 
 [connection signal="gui_input" from="Splitter/CommandBar/CommandEntry" to="." method="_on_CommandEntry_gui_input"]
 [connection signal="text_entered" from="Splitter/CommandBar/CommandEntry" to="." method="_on_CommandEntry_text_entered"]

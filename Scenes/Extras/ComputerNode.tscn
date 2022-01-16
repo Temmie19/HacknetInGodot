@@ -44,6 +44,7 @@ tracks/0/keys = {
 script = ExtResource( 1 )
 
 [node name="Display" parent="." instance=ExtResource( 3 )]
+visible = false
 
 [node name="Point" type="Node2D" parent="."]
 rotation = 3.14159

@@ -42,12 +42,23 @@ position = Vector2( 95.2441, 69.8456 )
 [node name="ComputerNode2" parent="Container" instance=ExtResource( 2 )]
 position = Vector2( 130.04, 0 )
 
-[node name="Light2D" type="Light2D" parent="Container"]
+[node name="LightNode" type="Light2D" parent="Container"]
 position = Vector2( 346.543, 110.985 )
 scale = Vector2( 2.77606, 1.58151 )
 texture = ExtResource( 3 )
 texture_scale = 0.13
 energy = 0.9
 range_item_cull_mask = 4
+shadow_enabled = true
+shadow_item_cull_mask = 4
+
+[node name="LightLabel" type="Light2D" parent="Container"]
+position = Vector2( 346.543, 110.985 )
+scale = Vector2( 2.77606, 1.58151 )
+texture = ExtResource( 3 )
+texture_scale = 0.13
+energy = 0.9
+mode = 3
+range_item_cull_mask = 8
 shadow_enabled = true
 shadow_item_cull_mask = 4

@@ -7,6 +7,8 @@ var ip_display = preload("res://Scenes/Extras/IPDisplay.tscn")
 var rng = RandomNumberGenerator.new()
 
 onready var container = get_node("Container")
+onready var nlight = get_node("Container/LightNode")
+onready var llight = get_node("Container/LightLabel")
 #onready var label_container = get_node("LabelContainer")
 
 func _ready():
@@ -134,3 +136,11 @@ func _ip_label_switch(comp_name, mode):
 	else:
 		get_node(str("LabelContainer/", comp_name)).visible = false
 	pass
+
+func _lights_off():
+	nlight.visible = false
+	llight.visible = false
+
+func _lights_on():
+	nlight.visible = true
+	llight.visible = true
