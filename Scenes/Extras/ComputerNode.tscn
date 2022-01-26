@@ -74,5 +74,6 @@ anims/Rotate = SubResource( 2 )
 anims/RotateOld = SubResource( 1 )
 next/RotateOld = "Rotate"
 
+[connection signal="gui_input" from="Point/TextureRect" to="." method="_on_node_click"]
 [connection signal="mouse_entered" from="Point/TextureRect" to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="Point/TextureRect" to="." method="_on_mouse_exited"]

@@ -19,6 +19,11 @@ run/main_scene="res://Scenes/MainScreen.tscn"
 boot_splash/bg_color=Color( 0.141176, 0.141176, 0.141176, 1 )
 config/icon="res://icon.png"
 
+[autoload]
+
+SignalBus="*res://Scripts/Singletons/SignalBus.gd"
+Status="*res://Scripts/Singletons/Status.gd"
+
 [display]
 
 window/size/width=1920

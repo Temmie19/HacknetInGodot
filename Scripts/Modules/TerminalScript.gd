@@ -21,6 +21,7 @@ var available_programs = {"SSHCrack.exe" : ["portcrusher",
 func _ready():
 	_calculate_terminal_size()
 	_read_main_programs()
+	_connect_signals()
 	#print(history.get_line_count())
 	#print(history.get_visible_line_count())
 
@@ -173,3 +174,11 @@ func _generate_binary(program_name):
 	for i in range(150):
 		binary += str(rng.randi_range(0,1))
 	return binary
+
+func _connect_to_computer(_id, cname, ip):
+	_add_to_terminal(str("Connecting to: ", ip, "...\n"))
+	yield(get_tree().create_timer(0.1), "timeout")
+	_add_to_terminal(str("Connected to ", cname, "@", ip, "\n"))
+
+func _connect_signals():
+	SignalBus.connect("connected", self, "_connect_to_computer")
