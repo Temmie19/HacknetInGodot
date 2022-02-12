@@ -39,6 +39,9 @@ onready var display_loc = display.get_canvas_item()
 func _ready():
 	anim.play("Rotate")
 	VisualServer.canvas_item_set_z_index(display_loc, 100)
+	if(name == "playerComp"):
+		Status.player_computer = get_node(".")
+		print("Player computer: ", Status.player_computer)
 
 func _set_display_info():
 	if domain_name == "":

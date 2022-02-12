@@ -175,10 +175,10 @@ func _generate_binary(program_name):
 		binary += str(rng.randi_range(0,1))
 	return binary
 
-func _connect_to_computer(_id, cname, ip):
+func _on_comp_connect(_id, cname, ip):
 	_add_to_terminal(str("Connecting to: ", ip, "...\n"))
 	yield(get_tree().create_timer(0.1), "timeout")
 	_add_to_terminal(str("Connected to ", cname, "@", ip, "\n"))
 
 func _connect_signals():
-	SignalBus.connect("connected", self, "_connect_to_computer")
+	SignalBus.connect("connected", self, "_on_comp_connect")

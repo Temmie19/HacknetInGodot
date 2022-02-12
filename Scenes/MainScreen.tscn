@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Scripts/MainScreen.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Modules/Viewport.tscn" type="PackedScene" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://Scenes/Extras/SpotLight.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Scenes/Extras/IPDisplay.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Assets/Images/Light.png" type="Texture" id=10]
+[ext_resource path="res://Scripts/Extras/TopDisplay.gd" type="Script" id=11]
 
 [sub_resource type="DynamicFont" id=1]
 font_data = ExtResource( 3 )
@@ -67,13 +68,17 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Display" parent="VSplitContainer/MenuBar" instance=ExtResource( 9 )]
-margin_left = 1678.0
+[node name="TopDisplay" parent="VSplitContainer/MenuBar" instance=ExtResource( 9 )]
+margin_left = 1660.0
 margin_top = 0.0
-margin_right = 1792.0
-margin_bottom = 36.0
+margin_right = 1920.0
+margin_bottom = 39.0
+text = "Connected to: #PLAY
+At:"
+align = 0
+script = ExtResource( 11 )
 
-[node name="Light2D" type="Light2D" parent="VSplitContainer/MenuBar/Display"]
+[node name="Light2D" type="Light2D" parent="VSplitContainer/MenuBar/TopDisplay"]
 position = Vector2( 57.2445, 17.6073 )
 scale = Vector2( 0.0598575, 0.0335356 )
 texture = ExtResource( 10 )
