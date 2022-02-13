@@ -6,6 +6,9 @@ onready var entry = get_node("Splitter/CommandBar/CommandEntry")
 
 var config = ConfigFile.new()
 
+const DefaultPrograms = preload("res://Scripts/Modules/DefaultPrograms.gd")
+onready var terminal_programs = DefaultPrograms.new()
+
 var line_count = 0
 var total_lines = 0
 
@@ -15,7 +18,7 @@ var program_binary = {}
 var available_programs = {"SSHCrack.exe" : ["portcrusher", 
 ["SecureShellCrack", "SSH", 8]], "SQL_MemCorrupt.exe" : ["portcrusher", 
 ["SQLMemoryCorrupt", "SQL", 12.2]], "clear" : ["terminal_program", "_clear_history"], 
-"lines": ["terminal_program", "_print_lines"]}
+"lines": ["terminal_program", "_print_lines"], "ls" : ["terminal_program", "_ls"]}
 #"SSHCrack.exe" : ["program", "SSH_CRACK", program_binary["SSH_CRACK"]]
 
 func _ready():
@@ -52,7 +55,7 @@ func _calculate_terminal_size():
 
 func _on_CommandEntry_text_entered(new_text):
 	var program_keys = available_programs.keys()
-	var text = entry.get_text().split(" ", false)
+	var text : Array = entry.get_text().split(" ", false)
 	var command_valid = false
 	#Basically we want to check if there's actually text in the entry field
 	#first, and then if there is see if it's a valid program
@@ -64,7 +67,8 @@ func _on_CommandEntry_text_entered(new_text):
 			if program[0] == "portcrusher":
 				_run_portcrusher(program[1])
 			elif program[0] == "terminal_program":
-				call(program[1])
+				text.pop_front()
+				terminal_programs.call(program[1], text)
 		else:
 			_invalid_command(text[0])
 
@@ -74,14 +78,6 @@ func _check_line_count():
 	if(line_count < total_lines):
 		history.remove_line(1)
 		line_count += 1
-
-func _clear_history():
-	#Resets the entire terminal history. Nice and simple
-	history.set_text("")
-	entry.set_text("")
-	line_count = 0
-	for _i in range(total_lines):
-		history.newline()
 
 func _print_lines():
 	print("Line count: ", history.get_line_count())
@@ -179,6 +175,8 @@ func _on_comp_connect(_id, cname, ip):
 	_add_to_terminal(str("Connecting to: ", ip, "...\n"))
 	yield(get_tree().create_timer(0.1), "timeout")
 	_add_to_terminal(str("Connected to ", cname, "@", ip, "\n"))
+	Status.current_directory = "/"
+	location.set_text(str(Status.active_ip, Status.current_directory, " >"))
 
 func _connect_signals():
 	SignalBus.connect("connected", self, "_on_comp_connect")
