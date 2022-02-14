@@ -92,6 +92,8 @@ func _add_to_terminal(text):
 	_check_line_count()
 
 func _invalid_command(text):
+	#So if we manage to get an invalid command put in, we need to handle that
+	#so it will function like a real command line
 	_display_previous_command()
 	_erase()
 	_add_to_terminal(str("Invalid command ", text, " - Check syntax \n"))
@@ -172,11 +174,18 @@ func _generate_binary(program_name):
 	return binary
 
 func _on_comp_connect(_id, cname, ip):
+	#So whenever we connect to a computer we have to print a "connecting to",
+	#line, a "sucessfully connected to" line, and then we also have to make sure
+	#that the terminal location is updated to the correct IP and directory
 	_add_to_terminal(str("Connecting to: ", ip, "...\n"))
 	yield(get_tree().create_timer(0.1), "timeout")
 	_add_to_terminal(str("Connected to ", cname, "@", ip, "\n"))
-	Status.current_directory = "/"
+	location.set_text(str(Status.active_ip, Status.current_directory, " >"))
+
+func _on_directory_change(location):
+	#Update the location on the terminal whenever we have a directory change
 	location.set_text(str(Status.active_ip, Status.current_directory, " >"))
 
 func _connect_signals():
 	SignalBus.connect("connected", self, "_on_comp_connect")
+	SignalBus.connect("changed_directory", self, "_on_directory_change")

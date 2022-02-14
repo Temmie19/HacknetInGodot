@@ -10,10 +10,14 @@ var entry = terminal_node.get_node("Splitter/CommandBar/CommandEntry")
 func _clear_history():
 	#Resets the entire terminal history. Nice and simple
 	history.set_text("")
-	entry.set_text("")
+	_erase()
 	terminal_node.line_count = 0
 	for _i in range(terminal_node.total_lines):
 		history.newline()
+
+func _erase():
+	#The stunning sequel
+	entry.set_text("")
 
 func _ls(post_command:Array):
 	#ls, like the real command, will list all the files in a directory. Or in 
@@ -23,7 +27,7 @@ func _ls(post_command:Array):
 	#actually available to connect to. Otherwise fail the check and return error
 	if typeof(Status.active_computer) == TYPE_NIL:
 		terminal_node._display_previous_command()
-		entry.set_text("")
+		_erase()
 		terminal_node._add_to_terminal(str("Cannot list contents of filesystem. ",\
 		"Please connect to a computer and try again.\n"))
 		return
@@ -31,6 +35,9 @@ func _ls(post_command:Array):
 	var location
 	if post_command.size() == 0:
 		location = Status.current_directory
+	elif post_command[0][0] == "/":
+		location = post_command[0]
+		print("Started from the top")
 	else:
 		location = Status.current_directory + post_command[0]
 	var parsed_location : Array = _location_parser(location)
@@ -51,20 +58,20 @@ func _ls(post_command:Array):
 				#If it doesn't exist, make the error and return it
 				if not loc in location_check:
 					terminal_node._display_previous_command()
-					entry.set_text("")
+					_erase()
 					terminal_node._add_to_terminal(str(location_string, " does not exist!\n"))
 					return
 				#If it's not a dictionary, meaning it's not a folder, return an error
 				elif not typeof(location_check[loc]) == TYPE_DICTIONARY:
 					terminal_node._display_previous_command()
-					entry.set_text("")
+					_erase()
 					terminal_node._add_to_terminal(str(location_string, " is not a valid directory!\n"))
 					return
 				#This section is important because this is how we check the next
 				#layer every time
 				else:
 					location_check = location_check[loc]
-					location_string += loc
+					location_string += loc + "/"
 		#If everything succeeds, set the active filesystem to the correct 
 		#dictionary/directory
 		active_filesystem = location_check
@@ -75,7 +82,7 @@ func _ls(post_command:Array):
 	var keys = active_filesystem.keys()
 	for key in keys:
 		if typeof(active_filesystem[key]) == TYPE_DICTIONARY:
-			folders.append(key)
+			folders.append(str(key + "/"))
 		else:
 			files.append(key)
 	#Create a new array out of the sorted folders and files arrays, going 
@@ -87,7 +94,7 @@ func _ls(post_command:Array):
 	if sorted.size() == 0:
 		sorted.append("")
 	terminal_node._display_previous_command()
-	entry.set_text("")
+	_erase()
 	for i in range(sorted.size()):
 		terminal_node._add_to_terminal(str(sorted[i] + "\n"))
 
@@ -103,8 +110,9 @@ func _location_parser(location:String):
 		#Check to see if we're going backwards with ".." but also make sure that
 		#there's a folder to go to, so we don't accidentally remove the root
 		#directory and break everything
-		if chunk == ".." and processed.size() > 1:
-			processed.pop_back()
+		if chunk == "..":
+			if processed.size() > 1:
+				processed.pop_back()
 		#If not going backwards, check to see if we're going nowhere
 		elif chunk == ".":
 			pass
