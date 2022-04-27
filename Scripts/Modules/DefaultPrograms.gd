@@ -54,15 +54,17 @@ func _ls(post_command:Array):
 		for loc in parsed_location:
 			#Check to see if it's the root directory, and if not run checks
 			if not loc == "/":
-				loc += "/"
+				#loc += "/"
 				#If it doesn't exist, make the error and return it
 				if not loc in location_check:
+					location_string += loc + "/"
 					terminal_node._display_previous_command()
 					_erase()
 					terminal_node._add_to_terminal(str(location_string, " does not exist!\n"))
 					return
 				#If it's not a dictionary, meaning it's not a folder, return an error
 				elif not typeof(location_check[loc]) == TYPE_DICTIONARY:
+					location_string += loc
 					terminal_node._display_previous_command()
 					_erase()
 					terminal_node._add_to_terminal(str(location_string, " is not a valid directory!\n"))
