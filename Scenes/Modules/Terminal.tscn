@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Assets/Fonts/NotoSans/NotoSans-Regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Scripts/Modules/TerminalScript.gd" type="Script" id=2]
-[ext_resource path="res://Assets/Images/Beam2.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Images/LightTiny.png" type="Texture" id=3]
 
 [sub_resource type="CanvasItemMaterial" id=4]
 light_mode = 2
@@ -63,6 +63,13 @@ size_flags_vertical = 3
 custom_fonts/normal_font = SubResource( 1 )
 scroll_following = true
 
+[node name="Light" type="Light2D" parent="Splitter/History"]
+position = Vector2( 347, 488 )
+scale = Vector2( 694, 976 )
+texture = ExtResource( 3 )
+mode = 3
+range_item_cull_mask = 4
+
 [node name="CommandBar" type="HBoxContainer" parent="Splitter"]
 margin_top = 976.0
 margin_right = 694.0
@@ -102,13 +109,6 @@ custom_fonts/font = SubResource( 3 )
 text = "  "
 caret_blink = true
 
-[node name="Light2D" type="Light2D" parent="."]
-position = Vector2( 78.6931, 500.713 )
-scale = Vector2( 0.873877, 0.903995 )
-texture = ExtResource( 3 )
-offset = Vector2( 320, 0 )
-mode = 3
-range_item_cull_mask = 4
-
+[connection signal="resized" from="." to="." method="_on_Terminal_resized"]
 [connection signal="gui_input" from="Splitter/CommandBar/CommandEntry" to="." method="_on_CommandEntry_gui_input"]
 [connection signal="text_entered" from="Splitter/CommandBar/CommandEntry" to="." method="_on_CommandEntry_text_entered"]

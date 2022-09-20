@@ -1,0 +1,12 @@
+[gd_scene format=2]
+
+[node name="Node2D" type="ColorRect"]
+margin_right = 512.0
+margin_bottom = 60.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+margin_right = 512.0
+margin_bottom = 60.0
+__meta__ = {
+"_edit_use_anchors_": false
+}

@@ -18,6 +18,7 @@
 		"node_position": [20,20],
 		"trace_time": -1,
 		"connected_nodes": [],
+		"is_hacked": true,
 	}
 },
 {
@@ -37,7 +38,7 @@
 		"has_proxy": false,
 		"proxy_length": 0,
 		"node_difficulty": -1,
-		"node_position": [30, 20],
+		"node_position": [95, 50],
 		"trace_time": -1,
 		"connected_nodes": [],
 	}

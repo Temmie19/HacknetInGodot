@@ -11,14 +11,11 @@ onready var label = get_node(".")
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	SignalBus.connect("connected", self, "_on_comp_connect")
-	pass # Replace with function body.
+	SignalBus.connect("disconnected", self, "_on_comp_disconnect")
 
 
 func _on_comp_connect(id, cname, ip):
-	#if domain_name == "":
-		label.set_text(str("Connected to: ", cname, " \nAt: ", ip, " "))
-	#else:
-	#	display.set_text(str(" ", display_name, " \n ", domain_name, " "))
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+	label.set_text(str("Connected to: ", cname, " \nAt: ", ip, " "))
+
+func _on_comp_disconnect(ip):
+	label.set_text(str("Connected to: \nAt:  "))

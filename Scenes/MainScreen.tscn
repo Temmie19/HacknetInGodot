@@ -73,7 +73,8 @@ margin_left = 1660.0
 margin_top = 0.0
 margin_right = 1920.0
 margin_bottom = 39.0
-text = "Connected to: #PLAY
+grow_horizontal = 0
+text = "Connected to:
 At:"
 align = 0
 script = ExtResource( 11 )
@@ -146,20 +147,20 @@ size_flags_stretch_ratio = 6.5
 
 [node name="RAM" parent="VSplitContainer/Interfaces/MainSplitter/SecondarySplitter" instance=ExtResource( 7 )]
 modulate = Color( 1, 1, 1, 0 )
-margin_right = 441.0
+margin_right = 322.0
 margin_bottom = 1027.0
 
 [node name="HorzContainer" type="VSplitContainer" parent="VSplitContainer/Interfaces/MainSplitter/SecondarySplitter"]
-margin_left = 453.0
+margin_left = 334.0
 margin_right = 1231.0
 margin_bottom = 1027.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-size_flags_stretch_ratio = 3.5
+size_flags_stretch_ratio = 5.5
 
 [node name="Viewport" parent="VSplitContainer/Interfaces/MainSplitter/SecondarySplitter/HorzContainer" instance=ExtResource( 2 )]
 modulate = Color( 1, 1, 1, 0 )
-margin_right = 778.0
+margin_right = 897.0
 margin_bottom = 783.0
 
 [node name="NodeMap" parent="VSplitContainer/Interfaces/MainSplitter/SecondarySplitter/HorzContainer" instance=ExtResource( 5 )]
@@ -168,7 +169,7 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 795.0
-margin_right = 778.0
+margin_right = 897.0
 margin_bottom = 1027.0
 
 [node name="Terminal" parent="VSplitContainer/Interfaces/MainSplitter" instance=ExtResource( 4 )]

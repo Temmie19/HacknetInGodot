@@ -28,8 +28,8 @@ func _ls(post_command:Array):
 	if typeof(Status.active_computer) == TYPE_NIL:
 		terminal_node._display_previous_command()
 		_erase()
-		terminal_node._add_to_terminal(str("Cannot list contents of filesystem. ",\
-		"Please connect to a computer and try again.\n"))
+		terminal_node._add_to_terminal(str("Cannot list contents of filesystem \n",\
+		"Please connect to a computer and try again\n"))
 		return
 	var active_filesystem = Status.active_computer.filesystem
 	var location
@@ -125,3 +125,23 @@ func _location_parser(location:String):
 		else:
 			processed.append(chunk)
 	return processed
+
+func _connect(post_command:Array):
+	var ip = post_command[0]
+	var computers = Status.node_map.get_node("Container").get_children()
+	terminal_node._display_previous_command()
+	_erase()
+	for i in computers:
+		if i.ip_address == ip:
+			SignalBus.emit_signal("connected", i.name, i.display_name, i.ip_address)
+			return
+	terminal_node._add_to_terminal("Failed to establish connection\n")
+	terminal_node._add_to_terminal(str("Could not find computer at ", ip, "\n"))
+
+func _disconnect(post_command:Array):
+	terminal_node._display_previous_command()
+	_erase()
+	if not Status.active_ip == null:
+		SignalBus.emit_signal("disconnected", Status.active_ip)
+	else:
+		terminal_node._add_to_terminal("No connection established\n")

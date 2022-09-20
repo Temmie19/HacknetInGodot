@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Scripts/Modules/NodeMap.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Extras/ComputerNode.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Assets/Images/Light.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Images/LightTiny.png" type="Texture" id=4]
 
 [node name="NodeMap" type="ColorRect"]
 anchor_top = 0.740741
@@ -19,46 +19,48 @@ __meta__ = {
 [node name="Border" type="ColorRect" parent="."]
 self_modulate = Color( 1, 1, 1, 0 )
 margin_left = 11.0
-margin_top = 22.0
+margin_top = 10.0
 margin_right = 704.0
-margin_bottom = 220.0
+margin_bottom = 208.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Container" type="ColorRect" parent="."]
 anchor_left = 0.0154062
-anchor_top = 0.0420168
+anchor_top = 0.0420169
 anchor_right = 0.985994
-anchor_bottom = 0.97479
+anchor_bottom = 0.962187
 color = Color( 0.188235, 0.180392, 0.305882, 1 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="ComputerNode" parent="Container" instance=ExtResource( 2 )]
-position = Vector2( 95.2441, 69.8456 )
-
 [node name="ComputerNode2" parent="Container" instance=ExtResource( 2 )]
+visible = false
 position = Vector2( 130.04, 0 )
 
-[node name="LightNode" type="Light2D" parent="Container"]
-position = Vector2( 346.543, 110.985 )
-scale = Vector2( 2.77606, 1.58151 )
-texture = ExtResource( 3 )
-texture_scale = 0.13
+[node name="ComputerNode" parent="Container" instance=ExtResource( 2 )]
+visible = false
+position = Vector2( 95.2441, 69.8456 )
+
+[node name="LightNode" type="Light2D" parent="."]
+position = Vector2( 358, 119 )
+scale = Vector2( 693, 219 )
+texture = ExtResource( 4 )
 energy = 0.9
 range_item_cull_mask = 4
 shadow_enabled = true
 shadow_item_cull_mask = 4
 
-[node name="LightLabel" type="Light2D" parent="Container"]
-position = Vector2( 346.543, 110.985 )
-scale = Vector2( 2.77606, 1.58151 )
-texture = ExtResource( 3 )
-texture_scale = 0.13
+[node name="LightLabel" type="Light2D" parent="."]
+position = Vector2( 357, 119 )
+scale = Vector2( 714, 238 )
+texture = ExtResource( 4 )
 energy = 0.9
 mode = 3
 range_item_cull_mask = 8
 shadow_enabled = true
 shadow_item_cull_mask = 4
+
+[connection signal="resized" from="Container" to="." method="_on_Container_resized"]

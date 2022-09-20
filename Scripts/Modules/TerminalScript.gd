@@ -18,13 +18,16 @@ var program_binary = {}
 var available_programs = {"SSHCrack.exe" : ["portcrusher", 
 ["SecureShellCrack", "SSH", 8]], "SQL_MemCorrupt.exe" : ["portcrusher", 
 ["SQLMemoryCorrupt", "SQL", 12.2]], "clear" : ["terminal_program", "_clear_history"], 
-"lines": ["terminal_program", "_print_lines"], "ls" : ["terminal_program", "_ls"]}
+"connect": ["terminal_program", "_connect"], "ls" : ["terminal_program", "_ls"],
+"disconnect": ["terminal_program", "_disconnect"], "dc": ["terminal_program", 
+"_disconnect"]}
 #"SSHCrack.exe" : ["program", "SSH_CRACK", program_binary["SSH_CRACK"]]
 
 func _ready():
 	_calculate_terminal_size()
 	_read_main_programs()
 	_connect_signals()
+	terminal_programs.call("_clear_history")
 	#print(history.get_line_count())
 	#print(history.get_visible_line_count())
 
@@ -173,7 +176,7 @@ func _generate_binary(program_name):
 		binary += str(rng.randi_range(0,1))
 	return binary
 
-func _on_comp_connect(_id, cname, ip):
+func _on_comp_connect(id, cname, ip):
 	#So whenever we connect to a computer we have to print a "connecting to",
 	#line, a "sucessfully connected to" line, and then we also have to make sure
 	#that the terminal location is updated to the correct IP and directory
@@ -182,10 +185,21 @@ func _on_comp_connect(_id, cname, ip):
 	_add_to_terminal(str("Connected to ", cname, "@", ip, "\n"))
 	location.set_text(str(Status.active_ip, Status.current_directory, " >"))
 
+func _on_comp_disconnect(ip):
+	_add_to_terminal(str("Disconnected from ", ip, "\n"))
+	location.set_text("/ >")
+
 func _on_directory_change(location):
 	#Update the location on the terminal whenever we have a directory change
 	location.set_text(str(Status.active_ip, Status.current_directory, " >"))
 
 func _connect_signals():
 	SignalBus.connect("connected", self, "_on_comp_connect")
+	SignalBus.connect("disconnected", self, "_on_comp_disconnect")
 	SignalBus.connect("changed_directory", self, "_on_directory_change")
+
+func _on_Terminal_resized():
+	var hsize = get_node("Splitter/History").get_size()
+	if round(hsize.x) > 0 and round(hsize.y) > 0:
+			get_node("Splitter/History/Light").set("position", Vector2(hsize.x / 2, hsize.y / 2))
+			get_node("Splitter/History/Light").set("scale", Vector2(hsize.x, hsize.y))

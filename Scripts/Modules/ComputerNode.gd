@@ -8,8 +8,8 @@ var is_hub_server = false
 var is_visible = true
 var rotate = false
 
-var filesystem : Dictionary = {"home/":{}, "log/":{}, "bin/":{}, 
-	"sys/":{"xserver.sys":"#BASE_THEME#", "os-config.sys":"#BINARY#",
+var filesystem : Dictionary = {"home":{}, "log":{}, "bin":{}, 
+	"sys":{"xserver.sys":"#BASE_THEME#", "os-config.sys":"#BINARY#",
 		"bootcfg.dll":"#BINARY#", "netcfgx.dll":"#BINARY#"}}
 
 var ports_available : Array = []
@@ -20,6 +20,9 @@ var has_firewall : bool = false
 var firewall_step_length : int = 1
 var firewall_solution : String = ""
 var trace_time : int = -1
+var extra_daemons : Array = []
+var daemon_data : Dictionary = {}
+var default_daemon : String = ""
 
 var node_difficulty : int = -1
 
@@ -27,7 +30,7 @@ var ip_address : String = "192.168.0.2"
 var domain_name : String = ""
 var display_name : String = "Player's Computer"
 
-var node_position : Array = [0, 0]
+var node_position : Array = []
 
 onready var node = get_node(".")
 onready var anim = get_node("AnimationPlayer")
@@ -43,6 +46,7 @@ func _ready():
 		#If this is the player's computer, make a quick reference to it in Status
 		Status.player_computer = get_node(".")
 		#print("Player computer: ", Status.player_computer)
+	SignalBus.connect("nodemap_resized", self, "_reallign_node")
 
 func _set_display_info():
 	if domain_name == "":
@@ -74,3 +78,20 @@ func _on_node_click(event):
 		elif event.get_button_index() == 1 and event.is_pressed() == true:
 			SignalBus.emit_signal("connected", self.name, display_name, ip_address)
 			print("Click")
+
+func _reallign_node(containerXY: Vector2):
+	#This code, while seemingly simple, took a long time for me to write. In theory
+	#this shouldn't be that hard to do. Get the size of the node map, and adjust
+	#the position of the nodes so they'll always been in an equivalent space on
+	#the map even when the module is resized. However, actually calculating this
+	#took a long time to figure out, because certain calculations actually worked
+	#but only on SOME of the nodes. Not all of them. And THAT is why this was
+	#as frustrating to make as it was. 
+	if node_position.size() == 2:
+		var x = 0
+		var y = 0
+		if not round(containerXY.x) == 0:
+			x = int(node_position[0] / float(100) * round(containerXY.x))
+		if not round(containerXY.y) == 0:
+			y = int(node_position[1] / float(100) * round(containerXY.y))
+		get_node(".").set_position(Vector2(x, y))

@@ -6,15 +6,18 @@ var ip_display = preload("res://Scenes/Extras/IPDisplay.tscn")
 
 var rng = RandomNumberGenerator.new()
 
+var nodes_generated : bool = false
+
 onready var container = get_node("Container")
-onready var nlight = get_node("Container/LightNode")
-onready var llight = get_node("Container/LightLabel")
+onready var nlight = get_node("LightNode")
+onready var llight = get_node("LightLabel")
 #onready var label_container = get_node("LabelContainer")
 
 func _ready():
 	_run_node_checks({})
 	#print(JSON.parse(_read_file("res://Computers/test.json")).result)
 	_add_node(JSON.parse(_read_file("res://Computers/test.json")).result)
+	#print("Light size: ", nlight.get_size())
 	pass # Replace with function body.
 
 #func _process(delta):
@@ -41,19 +44,30 @@ func _add_node(computers:Array):
 		var y = 0
 		#If it has a position already in the file, use that, otherwise pick
 		#something random instead
+		#This code was actually completely rewritten for the module adjustment code
+		#and let me tell you, this took like 3 days to figure out why the nodes 
+		#where ust getting stuck in the corner when they really should've been in
+		#their correct spots. Probably one of the most annoying things to figure
+		#out to date. Perhaps even trumping the terminal code in terms of frustration.
 		if "node_position" in node_info and node_info["node_position"].size() == 2:
-			x = int(round(node_info["node_position"][0] / 100 * csize.x)) % int(csize.x)
-			y = int(round(node_info["node_position"][1] / 100 * csize.y)) % int(csize.y)
+			x = round(int(node_info["node_position"][0]) % 100)
+			y = round(int(node_info["node_position"][1]) % 100)
+			computer.node_position = [x,y]
 		else:
-			x = rng.randi_range(0, csize.x)
-			y = rng.randi_range(0, csize.y)
+			x = rng.randi_range(0, 100)
+			y = rng.randi_range(0, 100)
+			computer.node_position = [x,y]
+			node_info["node_position"] = [x,y]
+			x = int(round(x / float(100) * csize.x))
+			y = int(round(y / float(100) * csize.y))
 		#Set the node position
-		computer.set_position(Vector2(x, y))
+		computer._reallign_node(csize)
 		#ip_label.set_position(Vector2(x, y))
 		var node_keys = node_info.keys()
 		for j in range(node_keys.size()):
 			computer.set(node_keys[j], node_info[node_keys[j]])
 		computer._set_display_info()
+		nodes_generated = true
 
 func _run_node_checks(node_info:Dictionary):
 	var port_count = 0
@@ -144,3 +158,21 @@ func _lights_off():
 func _lights_on():
 	nlight.visible = true
 	llight.visible = true
+
+func _on_Container_resized():
+	#So this code actually took me a whole long time to figure out because of some odd quirks
+	#when it comes to Godot. Basically is what this does, is try to reallign the lights that
+	#allow for nodes and labels to be visible when the modules get readjusted. Surprisingly
+	#difficult to set up, but definitely important for polish.
+	if get_node("Container").rect_size != null:
+		var csize = get_node("Container").get_size()
+		var nsize = get_node(".").get_size()
+		var cpos = get_node("Container").get_position()
+		SignalBus.emit_signal("nodemap_resized", csize)
+		if round(csize.x) > 0 and round(csize.y) > 0:
+			#This repositions and resizes the lights that allow the nodes to be
+			#clipped when they exit the barriers of the node map
+			get_node("LightNode").set("position", Vector2(cpos.x + (csize.x / 2), cpos.y + (csize.y / 2)))
+			get_node("LightNode").set("scale", Vector2(csize.x, csize.y))
+			get_node("LightLabel").set("position", Vector2(nsize.x / 2, nsize.y / 2))
+			get_node("LightLabel").set("scale", Vector2(nsize.x, nsize.y))
