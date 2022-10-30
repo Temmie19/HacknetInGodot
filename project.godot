@@ -23,6 +23,8 @@ config/icon="res://icon.png"
 
 SignalBus="*res://Scripts/Singletons/SignalBus.gd"
 Status="*res://Scripts/Singletons/Status.gd"
+ActiveTheme="*res://Scripts/Singletons/ActiveTheme.gd"
+DataCache="*res://Scripts/Singletons/DataCache.gd"
 
 [display]
 

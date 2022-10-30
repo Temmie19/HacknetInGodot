@@ -19,6 +19,6 @@
 		"node_difficulty": -1,
 		"connected_nodes": [],
 		"blacklisted_ports": [],
-		"whitelisted_ports": [],
+		"whitelisted_ports": []
 	}
 }

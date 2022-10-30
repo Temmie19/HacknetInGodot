@@ -1,12 +1,57 @@
-[gd_scene format=2]
+[gd_scene load_steps=5 format=2]
 
-[node name="Node2D" type="ColorRect"]
-margin_right = 512.0
-margin_bottom = 60.0
+[ext_resource path="res://Scripts/Extras/Button.gd" type="Script" id=1]
+[ext_resource path="res://Assets/styleboxes/button_styleboxflat.tres" type="StyleBox" id=2]
+[ext_resource path="res://Assets/Fonts/NotoSans/NotoSans-Regular.ttf" type="DynamicFontData" id=3]
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
-margin_right = 512.0
-margin_bottom = 60.0
+[sub_resource type="DynamicFont" id=1]
+font_data = ExtResource( 3 )
+
+[node name="ButtonPanel" type="Panel"]
+anchor_right = 0.266667
+anchor_bottom = 0.0555556
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_styles/panel = ExtResource( 2 )
+script = ExtResource( 1 )
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
+}
+
+[node name="ButtonContainer" type="HBoxContainer" parent="."]
+anchor_left = 0.00390625
+anchor_top = 0.0333333
+anchor_right = 0.996094
+anchor_bottom = 0.966667
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = 0
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Highlight" type="ColorRect" parent="ButtonContainer"]
+margin_right = 33.0
+margin_bottom = 56.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.07
+color = Color( 0.494118, 0.239216, 0.239216, 1 )
+
+[node name="Base" type="ColorRect" parent="ButtonContainer"]
+margin_left = 33.0
+margin_right = 508.0
+margin_bottom = 56.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color( 0.372549, 0.372549, 0.372549, 0.54902 )
+
+[node name="Label" type="Label" parent="ButtonContainer/Base"]
+anchor_left = 0.025
+anchor_right = 0.970833
+anchor_bottom = 1.0
+custom_fonts/font = SubResource( 1 )
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": true
 }
