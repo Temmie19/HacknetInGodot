@@ -9,6 +9,7 @@ var active_ip
 var theme_name = ""
 
 var current_directory = "/"
+var current_daemon = ""
 
 onready var base_scene = get_tree().get_root().get_children()[-1]
 onready var node_map = base_scene.get_node("VSplitContainer/Interfaces/MainSplitter/SecondarySplitter/HorzContainer/NodeMap")

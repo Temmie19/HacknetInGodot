@@ -1,7 +1,6 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Scripts/Modules/NodeMap.gd" type="Script" id=1]
-[ext_resource path="res://Scenes/Extras/ComputerNode.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Assets/Images/LightTiny.png" type="Texture" id=4]
 
 [node name="NodeMap" type="ColorRect"]
@@ -35,14 +34,6 @@ color = Color( 0.188235, 0.180392, 0.305882, 1 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
-
-[node name="ComputerNode2" parent="Container" instance=ExtResource( 2 )]
-visible = false
-position = Vector2( 130.04, 0 )
-
-[node name="ComputerNode" parent="Container" instance=ExtResource( 2 )]
-visible = false
-position = Vector2( 95.2441, 69.8456 )
 
 [node name="LightNode" type="Light2D" parent="."]
 position = Vector2( 358, 119 )

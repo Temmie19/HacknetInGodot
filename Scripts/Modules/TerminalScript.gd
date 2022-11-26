@@ -47,11 +47,11 @@ func _calculate_terminal_size():
 			lines += 1
 		else:
 			break
-	#print("Font height: ", height, " Lines is: ", lines)
+	print("Font height: ", height, " Lines is: ", lines)
 	total_lines = lines - 2
 	for _i in range(total_lines):
 		history.newline()
-	#print(history.get_visible_line_count())
+	print(history.get_visible_line_count())
 
 #func _process(delta):
 #	pass

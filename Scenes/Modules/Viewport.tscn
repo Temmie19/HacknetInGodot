@@ -1,16 +1,18 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=2 format=2]
 
 [ext_resource path="res://Scripts/Modules/Viewport.gd" type="Script" id=1]
-[ext_resource path="res://Scenes/Daemons/BaseDaemon.tscn" type="PackedScene" id=2]
 
 [node name="Viewport" type="ColorRect"]
-margin_right = 714.0
-margin_bottom = 790.0
+anchor_right = 0.371875
+anchor_bottom = 0.731481
 size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 3.32
 color = Color( 0.235294, 0.172549, 0.388235, 0.721569 )
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
 
 [node name="Background" type="ColorRect" parent="."]
 anchor_left = 0.0154062
@@ -27,11 +29,4 @@ anchor_left = 0.0154062
 anchor_top = 0.0151899
 anchor_right = 0.981793
 anchor_bottom = 0.988608
-color = Color( 0, 0, 0, 0 )
-__meta__ = {
-"_edit_use_anchors_": true
-}
-
-[node name="BaseDaemon" parent="DaemonContainer" instance=ExtResource( 2 )]
-anchor_right = 1.0
-anchor_bottom = 1.0
+color = Color( 1, 1, 1, 0 )

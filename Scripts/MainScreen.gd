@@ -14,6 +14,8 @@ onready var sfx1 = get_node("SoundEffects1")
 onready var sfx2 = get_node("SoundEffects2")
 
 func _ready():
+	print(OS.get_window_size())
+	OS.set_window_size(Vector2(1366, 720))
 	_startup_sequence()
 	var rng = RandomNumberGenerator.new()
 	rng.randomize()

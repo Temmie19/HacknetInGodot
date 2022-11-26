@@ -12,6 +12,7 @@ bg_color = Color( 0.207843, 0.180392, 0.294118, 1 )
 [sub_resource type="DynamicFont" id=3]
 size = 20
 outline_color = Color( 0.270588, 0.113725, 0.313726, 1 )
+use_mipmaps = true
 font_data = ExtResource( 1 )
 
 [sub_resource type="DynamicFont" id=4]
@@ -52,9 +53,6 @@ text = "RAM: 0  / 1024 MB"
 align = 1
 valign = 1
 clip_text = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Toggle" type="Button" parent="Count"]
 anchor_left = 0.870098
@@ -93,4 +91,5 @@ __meta__ = {
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.01
+
 [connection signal="pressed" from="Count/Toggle" to="." method="_on_Toggle_pressed"]

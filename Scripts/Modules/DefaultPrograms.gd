@@ -28,8 +28,8 @@ func _ls(post_command:Array):
 	if typeof(Status.active_computer) == TYPE_NIL:
 		terminal_node._display_previous_command()
 		_erase()
-		terminal_node._add_to_terminal(str("Cannot list contents of filesystem \n",\
-		"Please connect to a computer and try again\n"))
+		terminal_node._add_to_terminal("Cannot list contents of filesystem \n")
+		terminal_node._add_to_terminal("Please connect to a computer and try again\n")
 		return
 	var active_filesystem = Status.active_computer.filesystem
 	var location

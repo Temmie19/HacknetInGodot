@@ -64,9 +64,6 @@ margin_bottom = 15.0
 texture = ExtResource( 2 )
 expand = true
 stretch_mode = 6
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 method_call_mode = 1

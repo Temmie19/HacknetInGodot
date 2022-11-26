@@ -16,6 +16,7 @@
 font_data = ExtResource( 3 )
 
 [sub_resource type="DynamicFont" id=2]
+use_filter = true
 font_data = ExtResource( 3 )
 
 [node name="Node2D" type="Node2D"]
@@ -65,9 +66,6 @@ margin_bottom = 33.0
 custom_fonts/font = SubResource( 2 )
 align = 1
 valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="TopDisplay" parent="VSplitContainer/MenuBar" instance=ExtResource( 9 )]
 margin_left = 1660.0
@@ -161,6 +159,8 @@ size_flags_stretch_ratio = 5.5
 
 [node name="Viewport" parent="VSplitContainer/Interfaces/MainSplitter/SecondarySplitter/HorzContainer" instance=ExtResource( 2 )]
 modulate = Color( 1, 1, 1, 0 )
+anchor_right = 0.0
+anchor_bottom = 0.0
 margin_right = 897.0
 margin_bottom = 783.0
 

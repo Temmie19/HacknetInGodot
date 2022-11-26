@@ -5,6 +5,8 @@
 [ext_resource path="res://Assets/Fonts/NotoSans/NotoSans-Regular.ttf" type="DynamicFontData" id=3]
 
 [sub_resource type="DynamicFont" id=1]
+use_mipmaps = true
+use_filter = true
 font_data = ExtResource( 3 )
 
 [node name="ButtonPanel" type="Panel"]

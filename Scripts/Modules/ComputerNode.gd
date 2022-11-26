@@ -20,7 +20,7 @@ var has_firewall : bool = false
 var firewall_step_length : int = 1
 var firewall_solution : String = ""
 var trace_time : int = -1
-var extra_daemons : Array = []
+var available_daemons : Array = []
 var daemon_data : Dictionary = {}
 var default_daemon : String = ""
 
@@ -76,6 +76,7 @@ func _on_node_click(event):
 		and event.doubleclick == true:
 			print("Double click")
 		elif event.get_button_index() == 1 and event.is_pressed() == true:
+			SignalBus.emit_signal("disconnected", ip_address)
 			SignalBus.emit_signal("connected", self.name, display_name, ip_address)
 			print("Click")
 
